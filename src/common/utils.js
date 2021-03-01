@@ -1,3 +1,4 @@
+// 防抖节流
 const debounce = function(func, delay) {
   let timer = null
 

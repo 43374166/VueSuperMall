@@ -1,9 +1,11 @@
 <template>
   <div id="detail">
-    <detail-nav-bar></detail-nav-bar>
-    <scroll :probe-type="3">
-      <detail-swiper :swiper-img="topImages"></detail-swiper>
-      <detail-base-info :goods="goods"></detail-base-info>
+    <detail-nav-bar class="detail-navbar"/>
+    <scroll :probe-type="3"
+            class="content">
+      <detail-swiper :swiper-img="topImages" />
+      <detail-base-info :goods="goods" />
+      <detail-shop-info :shop="shop"/>
     </scroll>  
   </div>
 </template>
@@ -14,6 +16,7 @@ import DetailNavBar from './Childcomps/DetailNavBar'
 import DetailSwiper from './Childcomps/DetailSwiper'
 import DetailBaseInfo from './Childcomps/DetailBaseInfo'
 import Scroll from 'components/common/scroll/Scroll.vue'
+import DetailShopInfo from './Childcomps/DetailShopInfo'
 
 export default {
   name: 'Detail',
@@ -22,14 +25,16 @@ export default {
       iid: null,
       topImages: [],
       goods: {},
-      shop: {}
+      shop: {},
+      detailInfo: {}
     }
   },
   components: {
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
-    Scroll
+    Scroll,
+    DetailShopInfo
   },
   created() {
     // 拿到iid 
@@ -44,16 +49,34 @@ export default {
 
         const data = res.result
         this.topImages = data.itemInfo.topImages
-
+        // 获取商品信息
         this.goods = new Goods(data.itemInfo, data.columns, data.shopInfo.services)
+
+        // 获取店铺信息
         this.shop = new Shop(data.shopInfo)
         // console.log(this.goods);
+
+        // 保存商品的详情信息
+        this.detailInfo = res.detailInfo
       })
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  #detail {
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
+  }
+  .detail-navbar {
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
+  }
+  .content {
+    height: calc(100% - 44px);
+  }
 </style>

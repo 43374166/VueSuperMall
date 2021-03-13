@@ -6,6 +6,7 @@
       <detail-swiper :swiper-img="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop"/>
+      <detail-image :detail-info="detailInfo" />
     </scroll>  
   </div>
 </template>
@@ -17,6 +18,7 @@ import DetailSwiper from './Childcomps/DetailSwiper'
 import DetailBaseInfo from './Childcomps/DetailBaseInfo'
 import Scroll from 'components/common/scroll/Scroll.vue'
 import DetailShopInfo from './Childcomps/DetailShopInfo'
+import DetailImage from './Childcomps/DetailImage'
 
 export default {
   name: 'Detail',
@@ -34,7 +36,8 @@ export default {
     DetailSwiper,
     DetailBaseInfo,
     Scroll,
-    DetailShopInfo
+    DetailShopInfo,
+    DetailImage
   },
   created() {
     // 拿到iid 
@@ -45,7 +48,7 @@ export default {
   methods: {
     getDetail() {
       getDetail(this.iid).then(res => {
-        console.log(res);
+        console.log(res.result);
 
         const data = res.result
         this.topImages = data.itemInfo.topImages
@@ -57,7 +60,8 @@ export default {
         // console.log(this.goods);
 
         // 保存商品的详情信息
-        this.detailInfo = res.detailInfo
+        this.detailInfo = data.detailInfo
+        // console.log(this.detailInfo);
       })
     }
   }

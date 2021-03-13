@@ -62,7 +62,7 @@ export default {
   }
   .shop-top {
     display: flex;
-    justify-content: start;
+    justify-content: left;
     align-items: center;
   }
   .shop-top img{

@@ -5,7 +5,7 @@
             class="content">
       <detail-swiper :swiper-img="topImages" />
       <detail-base-info :goods="goods" />
-      <detail-shop-info :shop="shop"/>
+      <detail-shop-info :shop="shop" />
       <detail-image :detail-info="detailInfo" />
     </scroll>  
   </div>
@@ -28,7 +28,8 @@ export default {
       topImages: [],
       goods: {},
       shop: {},
-      detailInfo: {}
+      detailInfo: {},
+      itemParams: {}
     }
   },
   components: {
@@ -62,6 +63,9 @@ export default {
         // 保存商品的详情信息
         this.detailInfo = data.detailInfo
         // console.log(this.detailInfo);
+
+        // 保存商品的尺码参数等
+        this.itemParams = data.itemParams
       })
     }
   }

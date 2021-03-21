@@ -7,7 +7,8 @@
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
       <detail-image :detail-info="detailInfo" />
-    </scroll>  
+      <detail-params :item-params="itemParams"/>
+    </scroll>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import DetailBaseInfo from './Childcomps/DetailBaseInfo'
 import Scroll from 'components/common/scroll/Scroll.vue'
 import DetailShopInfo from './Childcomps/DetailShopInfo'
 import DetailImage from './Childcomps/DetailImage'
+import DetailParams from './Childcomps/DetailParams'
 
 export default {
   name: 'Detail',
@@ -38,7 +40,8 @@ export default {
     DetailBaseInfo,
     Scroll,
     DetailShopInfo,
-    DetailImage
+    DetailImage,
+    DetailParams
   },
   created() {
     // 拿到iid 

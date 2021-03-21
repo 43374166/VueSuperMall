@@ -5,7 +5,7 @@
       <div class="desc">{{detailInfo.desc}}</div>
       <div class="end"></div>
     </div>
-    <div v-for="(item,index) in detailInfo.detailImage" :key="index">
+    <div v-for="(item,index) in detailInfo.detailImage" :key="index" class="detail-img">
       <div class="info-key">{{item.key}}</div>
       <div class="info-list">
         <img v-for="(item,index) in item.list" :key="index" :src="item" alt="">
@@ -78,5 +78,11 @@ export default {
     left: 15px;
     color: #000;
     padding: 5px 0;
+  }
+
+  .detail-img {
+    width: 100vw;
+    padding-bottom: 5px;
+    border-bottom: 5px solid rgba(100, 100, 100, 0.3);
   }
 </style>

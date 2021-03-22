@@ -1,3 +1,11 @@
+// const proxyObj = {}
+//   proxyObj['/'] = {
+//     target: 'http://php.test.com/data.php',
+//     changeOrigin: true,
+//     pathRewrite: {
+//       '^/': ''
+//     }
+//   }
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -18,4 +26,9 @@ module.exports = {
   //   hotOnly: false,
   //   disableHostCheck: true,
   // },
+  // devServer: {
+  //   host: 'localhost',
+  //   port: 8080,
+  //   proxy: proxyObj
+  // }
 }

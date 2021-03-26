@@ -69,6 +69,7 @@ export default {
 
         // 保存商品的尺码参数等
         this.itemParams = data.itemParams
+        
       })
     }
   }

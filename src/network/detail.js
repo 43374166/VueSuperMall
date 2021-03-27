@@ -32,3 +32,9 @@ export class Shop {
     this.goodscount = shopinfo.cGoods
   }
 }
+
+export const getRecommend = () => {
+  return request({
+    url: 'recommend'
+  })
+}

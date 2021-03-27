@@ -20,7 +20,7 @@
       <tab-control :titles="['流行', '新款', '精选']"
                    @tabClick="tabClick" 
                    ref="tabControl2" />
-      <good-list :goods="showGoods"/>
+      <goods-list :goods="showGoods"/>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
@@ -29,7 +29,7 @@
 <script>
 import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
-import GoodList from 'components/content/goods/GoodList'
+import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
 import BackTop from 'components/content/backTop/BackTop.vue'
 
@@ -46,7 +46,7 @@ export default {
   components: { 
     NavBar,
     TabControl,
-    GoodList,
+    GoodsList,
     Scroll,
     BackTop,
     HomeSwiper,

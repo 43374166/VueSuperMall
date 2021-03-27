@@ -7,13 +7,15 @@
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
       <detail-image :detail-info="detailInfo" />
-      <detail-params :item-params="itemParams"/>
+      <detail-params :item-params="itemParams" />
+      <detail-conment :conment-info="conmentInfo" />
+      <goods-list :goods="recommends"/>
     </scroll>
   </div>
 </template>
 
 <script>
-import {getDetail, Goods, Shop} from 'network/detail'
+import {getDetail, Goods, Shop, getRecommend} from 'network/detail'
 import DetailNavBar from './Childcomps/DetailNavBar'
 import DetailSwiper from './Childcomps/DetailSwiper'
 import DetailBaseInfo from './Childcomps/DetailBaseInfo'
@@ -21,6 +23,9 @@ import Scroll from 'components/common/scroll/Scroll.vue'
 import DetailShopInfo from './Childcomps/DetailShopInfo'
 import DetailImage from './Childcomps/DetailImage'
 import DetailParams from './Childcomps/DetailParams'
+import DetailConment from './Childcomps/DetailConment'
+
+import GoodsList from 'components/content/goods/GoodsList'
 
 export default {
   name: 'Detail',
@@ -31,7 +36,9 @@ export default {
       goods: {},
       shop: {},
       detailInfo: {},
-      itemParams: {}
+      itemParams: {},
+      conmentInfo: {},
+      recommends: []
     }
   },
   components: {
@@ -41,18 +48,21 @@ export default {
     Scroll,
     DetailShopInfo,
     DetailImage,
-    DetailParams
+    DetailParams,
+    DetailConment,
+    GoodsList
   },
   created() {
     // 拿到iid 
     this.iid = this.$route.params.iid
     // 获取数据
     this.getDetail()
+    this.getRecommend()
   },
   methods: {
     getDetail() {
       getDetail(this.iid).then(res => {
-        console.log(res.result);
+        // console.log(res.result);
 
         const data = res.result
         this.topImages = data.itemInfo.topImages
@@ -70,6 +80,18 @@ export default {
         // 保存商品的尺码参数等
         this.itemParams = data.itemParams
         
+        // 保存评论信息数据
+        this.conmentInfo = data.rate
+        // console.log(this.conmentInfo);
+      })
+    },
+    getRecommend() {
+      getRecommend().then(res => {
+        console.log(res);
+
+        this.recommends = res.data.list
+
+        console.log(this.recommends);
       })
     }
   }

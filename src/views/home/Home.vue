@@ -38,7 +38,7 @@ import RecommendView from './Childcomps/RecommendView'
 import FeatureView from './Childcomps/FeatureView'
 
 import {getHomeMultidata, getHomeGoods} from 'network/home'
-import {debounce} from 'common/utils'
+import {itemListenerMixin} from 'common/mixin'
 
 
 
@@ -74,6 +74,7 @@ export default {
   // destroyed() {
   //   console.log('没有keep-live就会销毁');
   // },
+  mixins: [itemListenerMixin],
   activated() {
     this.$refs.scroll && this.$refs.scroll.scrollTo(0, this.saveY, 0)
     this.$refs.scroll && this.$refs.scroll.refresh()
@@ -81,9 +82,13 @@ export default {
     // console.log(this.$refs.scroll.scroll);
   },
   deactivated() {
+    // 保存Y值
     this.saveY = this.$refs.scroll && this.$refs.scroll.getScrollY()
     // console.log(this.saveY);
     // console.log(this.$refs.scroll.getScrollY());
+
+    // 取消全局事件的监听
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
   // 组件创建完成时开始调用
   created() {
@@ -98,10 +103,13 @@ export default {
 
   mounted() {
     // 监听goods里面照片的加载完成
-    const refresh = debounce(this.$refs.scroll && this.$refs.scroll.refresh, 200)
-    this.$bus.$on('itemImageLoad', () => {
-      refresh()
-    })
+    // const refresh = debounce(this.$refs.scroll && this.$refs.scroll.refresh, 200)
+
+    // this.itemImgListener = () => {
+    //   refresh()
+    // }
+
+    // this.$bus.$on('itemImageLoad', this.itemImgListener)
   },
 
   computed: {

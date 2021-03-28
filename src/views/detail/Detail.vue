@@ -16,6 +16,9 @@
 
 <script>
 import {getDetail, Goods, Shop, getRecommend} from 'network/detail'
+// import {debounce} from 'common/utils'
+import {itemListenerMixin} from 'common/mixin'
+
 import DetailNavBar from './Childcomps/DetailNavBar'
 import DetailSwiper from './Childcomps/DetailSwiper'
 import DetailBaseInfo from './Childcomps/DetailBaseInfo'
@@ -24,7 +27,6 @@ import DetailShopInfo from './Childcomps/DetailShopInfo'
 import DetailImage from './Childcomps/DetailImage'
 import DetailParams from './Childcomps/DetailParams'
 import DetailConment from './Childcomps/DetailConment'
-
 import GoodsList from 'components/content/goods/GoodsList'
 
 export default {
@@ -41,6 +43,7 @@ export default {
       recommends: []
     }
   },
+  mixins: [itemListenerMixin],
   components: {
     DetailNavBar,
     DetailSwiper,
@@ -58,6 +61,18 @@ export default {
     // 获取数据
     this.getDetail()
     this.getRecommend()
+  },
+  mounted() {
+    // const refresh = debounce(this.$refs.scroll && this.$refs.scroll.refresh, 200)
+
+    // this.itemImgListener = () => {
+    //   refresh()
+    // }
+    
+    // this.$bus.$on('itemImgLoad', this.itemImgListener)
+  },
+  destroyed() {
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
   methods: {
     getDetail() {
@@ -87,11 +102,11 @@ export default {
     },
     getRecommend() {
       getRecommend().then(res => {
-        console.log(res);
+        // console.log(res);
 
         this.recommends = res.data.list
 
-        console.log(this.recommends);
+        // console.log(this.recommends);
       })
     }
   }

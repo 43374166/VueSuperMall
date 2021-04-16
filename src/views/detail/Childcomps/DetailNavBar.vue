@@ -2,7 +2,7 @@
   <nav-bar class="detail-navbar">
     <div slot="left" 
          class="nav-left"
-         @click="baclClick">
+         @click="backClick">
       <img src="~assets/img/common/back.svg" alt="">
     </div>baclClick
     <div slot="center" class="title">
@@ -31,7 +31,7 @@ export default {
     itemClick(index) {
       this.currentIndex = index
     },
-    baclClick() {
+    backClick() {
       this.$router.go(-1)
       // console.log('dianji');
     }

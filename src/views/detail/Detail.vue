@@ -2,7 +2,9 @@
   <div id="detail">
     <detail-nav-bar class="detail-navbar"/>
     <scroll :probe-type="3"
-            class="content">
+            ref="scroll"
+            class="content"
+            @scroll="showPosition">
       <detail-swiper :swiper-img="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
@@ -40,7 +42,8 @@ export default {
       detailInfo: {},
       itemParams: {},
       conmentInfo: {},
-      recommends: []
+      recommends: [],
+      saveY: null
     }
   },
   mixins: [itemListenerMixin],
@@ -70,6 +73,8 @@ export default {
     // }
     
     // this.$bus.$on('itemImgLoad', this.itemImgListener)
+    this.saveY = this.$refs.scroll && this.$refs.scroll.getScrollY()
+    console.log(this.saveY);
   },
   destroyed() {
     this.$bus.$off('itemImgLoad', this.itemImgListener)
@@ -108,6 +113,9 @@ export default {
 
         // console.log(this.recommends);
       })
+    },
+    showPosition(position) {
+      console.log(position);
     }
   }
 }

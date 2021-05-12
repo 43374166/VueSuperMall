@@ -143,7 +143,7 @@ export default {
     contentScroll(position) {
       // 判断回到顶部是否显示
       this.isShowBackTop = (-position.y) > 800
-
+      // console.log(position);
       // 判断TabControl是否吸顶
       this.isTabFixed = (-position.y) > this.tabOffsetTop
     },

@@ -74,7 +74,7 @@ export default {
     
     // this.$bus.$on('itemImgLoad', this.itemImgListener)
     this.saveY = this.$refs.scroll && this.$refs.scroll.getScrollY()
-    console.log(this.saveY);
+    // console.log(this.saveY);
   },
   destroyed() {
     this.$bus.$off('itemImgLoad', this.itemImgListener)
@@ -115,7 +115,7 @@ export default {
       })
     },
     showPosition(position) {
-      console.log(position);
+      // console.log(position);
     }
   }
 }

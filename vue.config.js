@@ -18,17 +18,5 @@ module.exports = {
       }
     }
   },
-  // devServer: {
-  //   host: 'localhost',
-  //   public: '192.168.43.99:8080',//该网络地址为你联网的ip地址
-  //   port: 8080,
-  //   https: false,
-  //   hotOnly: false,
-  //   disableHostCheck: true,
-  // },
-  // devServer: {
-  //   host: 'localhost',
-  //   port: 8080,
-  //   proxy: proxyObj
-  // }
+  publicPath: './',
 }

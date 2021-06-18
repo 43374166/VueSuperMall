@@ -1,6 +1,7 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-navbar"/>
+    <detail-nav-bar class="detail-navbar"
+                    @titleClick="titleClick"/>
     <scroll :probe-type="3"
             ref="scroll"
             class="content"
@@ -43,7 +44,8 @@ export default {
       itemParams: {},
       conmentInfo: {},
       recommends: [],
-      saveY: null
+      saveY: null,
+      themeTopYs: [0, 1000, 2000, 3000]
     }
   },
   mixins: [itemListenerMixin],
@@ -116,6 +118,10 @@ export default {
     },
     showPosition(position) {
       // console.log(position);
+    },
+    titleClick(index) {
+      console.log(index);
+      this.$refs.scroll.scrollTo(0, -this.themeTopYs[index],2000)  // 参数分别为x, y, time时间
     }
   }
 }

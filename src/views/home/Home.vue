@@ -67,7 +67,8 @@ export default {
       isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
-      saveY: 0
+      saveY: 0,
+      itemImgListener: null
     }
   },
   // 离开时销毁
@@ -89,6 +90,7 @@ export default {
 
     // 取消全局事件的监听
     this.$bus.$off('itemImgLoad', this.itemImgListener)
+    // console.log('home');
   },
   // 组件创建完成时开始调用
   created() {
@@ -102,11 +104,11 @@ export default {
   },
 
   mounted() {
-    // 监听goods里面照片的加载完成
-    // const refresh = debounce(this.$refs.scroll && this.$refs.scroll.refresh, 200)
+    // 监听goods里面照片的加载完成，代码已经写入混入里面
+    // let newRefresh = debounce(this.$refs.scroll && this.$refs.scroll.refresh, 200)
 
     // this.itemImgListener = () => {
-    //   refresh()
+    //   newRefresh()
     // }
 
     // this.$bus.$on('itemImageLoad', this.itemImgListener)
@@ -159,6 +161,7 @@ export default {
     },
     swiperLoadFinish() {
       this.recomLoadFinish()
+      // console.log('镜头');
     },
     
 
